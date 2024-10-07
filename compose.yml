@@ -2,6 +2,7 @@ name: 1200_poker
 
 services:
   poker:
+    container_name: poker
     image: ghcr.io/squid1127/1200-poker:main
     pull_policy: always
 
