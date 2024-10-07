@@ -1,0 +1,15 @@
+name: 1200_poker
+
+services:
+  poker:
+    image: ghcr.io/squid1127/1200-poker:latest
+    pull_policy: always
+
+    env_file:
+      - .env
+    networks:
+      - main
+
+networks:
+  main:
+    driver: bridge
