@@ -1,0 +1,30 @@
+{
+    "name": "poker-bot",
+    "version": "0.1.0",
+    "description": "A simple Node app built on fastify, instantly up and running.",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "dependencies": {
+      "discord.js": "^13.9.0",
+      "express": "^4.19.2",
+      "web-streams-polyfill": "^4.0.0",
+      "fastify": "^4.28.1",
+      "handlebars": "^4.7.8",
+      "@fastify/view": "^9.1.0",
+      "@fastify/static": "^7.0.4",
+      "@fastify/formbody": "^7.4.0"
+    },
+    "engines": {
+      "node": "16.x"
+    },
+    "repository": {
+      "url": "https://glitch.com/edit/#!/glitch-mvp-node"
+    },
+    "license": "MIT",
+    "keywords": [
+      "node",
+      "glitch"
+    ]
+  }
