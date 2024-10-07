@@ -2,7 +2,7 @@ name: 1200_poker
 
 services:
   poker:
-    image: ghcr.io/squid1127/1200-poker:latest
+    image: ghcr.io/squid1127/1200-poker:main
     pull_policy: always
 
     env_file:
