@@ -30,7 +30,15 @@ const GUILD_MESSAGE_REACTIONS = Intents.FLAGS.GUILD_MESSAGE_REACTIONS;
 
 const client = new Discord.Client({ intents: [GUILDS, GUILD_MESSAGES, GUILD_MESSAGE_REACTIONS] });
 
-const token = process.env['token'];
+require('dotenv').config();
+const token = process.env['DISCORD_BOT_TOKEN'];
+
+console.log(`Discord bot token: ${token}`);
+
+if (!token) {
+    console.error('Error: Discord bot token is not defined. Please set the token in your environment variables.');
+    process.exit(1);
+}
 
 const suits = ['❤️', '♠️', '♦️', '♣️'];
 
