@@ -267,7 +267,6 @@ function addPoints(userId, points) {
 client.on("messageCreate", (message) => {
   if (message.content.toLowerCase() === "points") {
     const userId = message.author.id;
-    that;
     const points = userPoints[userId] || 0; // Get user points or default to 0
 
     message.reply(`You have ${points} points.`);
@@ -310,10 +309,13 @@ client.on("messageCreate", (message) => {
       );
     } else {
       message.channel.send("*beep* *beep* *beep* *errrrr* aw dangit!");
+      const userId = message.author.id;
+      const aboutToLose = Math.floor(Math.random() * 100000000000000000000000000000000000000) + 1;
+      addPoints(userId, -aboutToLose);
       message.channel.send(
         message.author.username +
           " has lost all their money and are in debt " +
-          Math.floor(Math.random() * 100000000000000000000000000000000000000) +
+            userPoints[userId] +
           " dollars. They will also be set on fire."
       );
     }
