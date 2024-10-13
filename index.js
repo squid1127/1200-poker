@@ -260,7 +260,7 @@ function addPoints(userId, points) {
 
 client.on('messageCreate', message => {
 
-    if (message.content.startsWith('!points')) {
+    if (message.content.toLowerCase() === 'points') {
 
         const userId = message.author.id;
 
