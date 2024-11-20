@@ -12,7 +12,7 @@
         "@fastify/view": "^9.1.0",
         "discord.js": "^13.9.0",
         "dotenv": "^16.4.5",
-        "express": "^4.19.2",
+        "express": "^4.21.1",
         "fastify": "^4.28.1",
         "handlebars": "^4.7.8",
         "web-streams-polyfill": "^4.0.0"
