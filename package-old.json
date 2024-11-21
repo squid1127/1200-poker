@@ -1,7 +1,7 @@
 {
-    "name": "1200-poker",
+    "name": "poker-bot",
     "version": "0.1.0",
-    "description": "A simple bot for playing poker (Exept without the gambling part)",
+    "description": "A simple Node app built on fastify, instantly up and running.",
     "main": "index.js",
     "scripts": {
         "start": "node index.js"
@@ -12,14 +12,13 @@
         "@fastify/view": "^9.1.0",
         "discord.js": "^13.9.0",
         "dotenv": "^16.4.5",
-        "events": "^3.3.0",
         "express": "^4.21.1",
         "fastify": "^4.28.1",
         "handlebars": "^4.7.8",
         "web-streams-polyfill": "^4.0.0"
     },
     "engines": {
-        "node": "20.x"
+        "node": "16.x"
     },
     "repository": {
         "url": "https://glitch.com/edit/#!/glitch-mvp-node"
