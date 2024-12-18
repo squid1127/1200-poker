@@ -13,7 +13,7 @@
         "discord.js": "^13.9.0",
         "dotenv": "^16.4.5",
         "events": "^3.3.0",
-        "express": "^4.21.1",
+        "express": "^4.21.2",
         "fastify": "^4.28.1",
         "handlebars": "^4.7.8",
         "web-streams-polyfill": "^4.0.0"
