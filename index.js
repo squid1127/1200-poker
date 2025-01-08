@@ -298,28 +298,88 @@ client.on("messageCreate", (message) => {
     playRound(message);
   }
 });
+client.on("messageCreate", (message) => {
+  if (message.content.toLowerCase() === "poker-help") {
+    const fields = [
+      {
+        name: "Commands",
+        value:
+          "`poker` - Start a round.\n`points` - Check your points.\n`reset` - Reset your points.\n`lets go gambling` - Gamble your points away (*What could possibly go wrong?*).",
+      },
+    ];
+    const embed = new MessageEmbed()
+      .setTitle("Poker | Help")
+      .setDescription(
+        // `poker: play poker and try to get the most points by matching up values, suits, or getting 5 numbers in a row.\npoker-help: show all poker commands.\npoints: get the number of points you have.\nreset: brings your points to 0.\nlets go gambling: no.`
+        "Play a round of poker (kinda) and try to get the most points by matching up values, suits, or getting 5 numbers in a row."
+      )
+      .setColor("#e74442")
+      .addFields(fields)
+      .setFooter({ text: "Brought to you by @1200_ and @squid1127" });
+    message.channel.send({ embeds: [embed] });
+  }
+});
+client.on("messageCreate", (message) => {
+  if (message.content.toLowerCase() === "reset") {
+    const userID = message.author.id;
+    addPoints(userID, -userID);
+
+    message.reply(`You have reset your points.`);
+  }
+});
 
 client.on("messageCreate", (message) => {
-  if (message.content.toLowerCase() === "lets go gambling") {
-    const randomNumber = Math.floor(Math.random() * 50) + 1;
+  if (/^\s?let'?s go gambling!?\s?$/gi.test(message.content)) {
+    const randomNumber = Math.ceil(Math.random() * 50) + 1;
 
     if (randomNumber === 1) {
       message.channel.send(
         "*beep* *beep* *beep* *babababaring* i cant stop winning!"
       );
+
+      const userId = message.author.id;
+      const currentPoints = userPoints[userId] || 0;
+      const pointsToWin = Math.ceil(currentPoints * 0.4) + 2;
+      addPoints(userId, pointsToWin);
+
+      message.channel.send(
+        `${message.author.username} has won ${pointsToWin} points and now has ${userPoints[userId]} points.`
+      );
     } else {
       message.channel.send("*beep* *beep* *beep* *errrrr* aw dangit!");
       const userId = message.author.id;
-      const aboutToLose = Math.floor(Math.random() * 100000000000000000000000000000000000000) + 1;
-      addPoints(userId, -aboutToLose);
-      message.channel.send(
-        message.author.username +
-          " has lost all their money and are in debt " +
-            userPoints[userId] +
-          " dollars. They will also be set on fire."
-      );
+      const currentPoints = userPoints[userId] || 0;
+      const pointsToLose = Math.abs(Math.ceil(currentPoints * 0.3)) + 1;
+
+      addPoints(userId, -pointsToLose);
+      if (userPoints[userId] < -1) {
+        message.channel.send(
+          `${
+            message.author.username
+          } has lost **${pointsToLose} points** and is now in debt **${Math.abs(
+            userPoints[userId]
+          )} points**. How are they gambling with no points?`
+        );
+      } else if (userPoints[userId] < 0) {
+        message.channel.send(
+          `${
+            message.author.username
+          } has lost **${pointsToLose} points** and is now in debt **${Math.abs(
+            userPoints[userId]
+          )} points**. What where they thinking?`
+        );
+      } else {
+        message.channel.send(
+          `${message.author.username} has lost **${pointsToLose} points** and now has **${userPoints[userId]} points**. Better luck next time!`
+        );
+      }
     }
   }
+});
+
+client.once("ready", () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setActivity("poker-help", { type: "PLAYING" });
 });
 
 client.login(token);
