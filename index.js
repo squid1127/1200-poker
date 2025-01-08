@@ -322,15 +322,15 @@ client.on("messageCreate", (message) => {
 client.on("messageCreate", (message) => {
   if (message.content.toLowerCase() === "reset") {
     const userID = message.author.id;
-    addPoints(userID, -userID);
+    addPoints(userID, -userPoints[userID]);
 
-    message.reply(`You have reset your points.`);
+    message.reply(`**You have reset your points.**`);
   }
 });
 
 client.on("messageCreate", (message) => {
   if (/^\s?let'?s go gambling!?\s?$/gi.test(message.content)) {
-    const randomNumber = Math.ceil(Math.random() * 50) + 1;
+    const randomNumber = Math.ceil(Math.random() * 20) + 1;
 
     if (randomNumber === 1) {
       message.channel.send(
