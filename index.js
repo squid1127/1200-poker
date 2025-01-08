@@ -143,7 +143,7 @@ async function playRound(message) {
       )}\nReact with the numbers to replace cards.`
     )
 
-    .setFooter("React with ➡️ when ready to lock in your changes.");
+    .setFooter({ text: "React with ➡️ when ready to lock in your changes." });
 
   const msg = await message.channel.send({ embeds: [embed] });
 
