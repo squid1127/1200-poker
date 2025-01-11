@@ -1,38 +1,24 @@
-global.ReadableStream = require("web-streams-polyfill").ReadableStream;
+// Main code :0
 
-// Global object to store user points
-
-const express = require("express");
-
-const app = express();
-
-app.listen(3000, () => {
-  console.log("Project is running!");
-});
-
-app.get("/", (req, res) => {
-  res.send("Hello world!");
-});
-
+// Import the discord.js module
 const Discord = require("discord.js");
-
 const { Client, Intents, MessageEmbed } = require("discord.js");
 
-const GUILDS = Intents.FLAGS.GUILDS;
-
-const GUILD_MESSAGES = Intents.FLAGS.GUILD_MESSAGES;
-
-const GUILD_MESSAGE_REACTIONS = Intents.FLAGS.GUILD_MESSAGE_REACTIONS;
-
+// Create an instance of a Discord client
 const client = new Discord.Client({
-  intents: [GUILDS, GUILD_MESSAGES, GUILD_MESSAGE_REACTIONS],
+  intents: [
+    Intents.FLAGS.GUILDS, // Guilds/Server
+    Intents.FLAGS.GUILD_MESSAGES, // Messages in a server
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS, // Reactions to messages
+  ],
 });
 
-require("dotenv").config();
+// Environment variables
+require("dotenv").config(); // Load environment variables from a .env file into process.env
 const token = process.env["DISCORD_BOT_TOKEN"];
+// Add bot's token to a file in the root directory called .env with the following format DISCORD_BOT_TOKEN=sigmasigmaboysigmaboysigmaboy
 
-console.log(`Discord bot token: ${token}`);
-
+// Error if no token is defined
 if (!token) {
   console.error(
     "Error: Discord bot token is not defined. Please set the token in your environment variables."
